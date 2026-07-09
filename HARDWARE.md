@@ -16,7 +16,7 @@ the whole course is reproducible on the machine you're reading this on.
 
 | Stage | Config | Time |
 |---|---|---|
-| `00` env check | — | a few seconds |
+| `00` env check | - | a few seconds |
 | `01` dataset synthesis | 8 animals x 2 rounds | ~33-43 s per shard |
 | `02` SFT | 450 steps | **~231 s** (~0.45 s/step) |
 | `03` LoRA | 450 steps, per rank (x4 ranks) | **~214-229 s** each |
@@ -24,7 +24,7 @@ the whole course is reproducible on the machine you're reading this on.
 | `05` DPO (overcooked demo) | 300 steps | ~85 s (estimate at ~0.28 s/step; only the 25-step run is in canon) |
 | `06` KD student | 1500 steps | **~586 s** (teacher forward roughly doubles cost) |
 | `06` nano scratch control | 1500 steps | **~268 s** |
-| `07` int8 quantize + web export | — | ~5.5 s |
+| `07` int8 quantize + web export | - | ~5.5 s |
 | `08` eval suite | 180 generations per model | minutes per model (nano models are faster) |
 
 ## Time-boxed environments
@@ -32,4 +32,4 @@ the whole course is reproducible on the machine you're reading this on.
 Long-running scripts (`02`, `03`, `05`, `06`) accept `--resume --max-seconds N`: run the same
 command repeatedly until it prints the final JSON instead of a `paused_at_step`. This lets the
 pipeline checkpoint through environments that cap process wall-time. On a normal laptop you never
-need it — just run the scripts to completion (that's what `make all` does).
+need it - just run the scripts to completion (that's what `make all` does).

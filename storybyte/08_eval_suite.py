@@ -1,6 +1,6 @@
 """The scoreboard: every canonical number in the course comes from this script.
 
-Metrics (all heuristic string/structure checks — the course labels them as such):
+Metrics (all heuristic string/structure checks - the course labels them as such):
   - character_compliance: requested animal appears >=2 times in the story
   - name_compliance:      requested NAME appears >=2 times (the copy/induction skill)
   - format_compliance:    story terminates with <|endoftext|> within budget and
@@ -121,7 +121,7 @@ def main() -> None:
     ap.add_argument("--model", required=True)
     ap.add_argument("--quick", action="store_true", help="1 seed, first 12 gold requests")
     ap.add_argument("--part", type=str, default=None,
-                    help="i:n — run only the i-th of n slices of gold, save partial rows")
+                    help="i:n - run only the i-th of n slices of gold, save partial rows")
     ap.add_argument("--report", action="store_true",
                     help="merge saved parts into the ladder entry")
     args = ap.parse_args()

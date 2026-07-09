@@ -1,4 +1,4 @@
-"""StoryByte tokenizer — a thin wrapper around the authoritative HF tokenizer file.
+"""StoryByte tokenizer - a thin wrapper around the authoritative HF tokenizer file.
 
 The tiny-llm course ships two tokenizer files; storybyte_tokenizer_hf.json is the
 authoritative encoder (GPT-2 byte-level BPE, use_regex=True, add_prefix_space=False).
@@ -23,7 +23,7 @@ EOS_ID = 0
 # v3 decision (measured): the dialogue control rides on dedicated CONTROL TOKENS,
 # CTRL-style, because the natural-phrase contrast ("with talking" vs "with no
 # talking") was NOT learnable at 1.09M params (dialogue compliance stayed ~chance
-# in v1/v2 — see results/eval_ladder.json). The UI shows the request in natural
+# in v1/v2 - see results/eval_ladder.json). The UI shows the request in natural
 # language and compiles it to this format transparently.
 REQ_TOKEN = "<|req|>"
 STORY_TOKEN = "<|story|>"

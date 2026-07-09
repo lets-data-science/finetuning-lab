@@ -2,10 +2,10 @@
 
 What's frozen and what trains:
   - ALL base weights frozen (including the new special-token embedding rows,
-    which were already trained by... nothing — so LoRA runs here start from the
+    which were already trained by... nothing - so LoRA runs here start from the
     SFT-extended tokenizer but re-initialize the special rows and train ONLY:
-      (a) the special-token embedding rows (they're new — someone must teach them), and
-      (b) rank-r adapters ΔW = (alpha/r)·B·A on every attention projection
+      (a) the special-token embedding rows (they're new - someone must teach them), and
+      (b) rank-r adapters delta_W = (alpha/r) * B * A on every attention projection
           (c_attn, c_proj) in all 4 blocks.
   This matches the honest LoRA story: base knowledge frozen, tiny task-specific
   addition trains.
@@ -13,7 +13,7 @@ What's frozen and what trains:
 Merging: 07's job normally; here we also export a merged full .npz per rank so
 the eval suite and the browser can run it with the standard loader
 (checkpoints/lora_r{r}_merged.npz) plus the adapter-only file
-(checkpoints/lora_r{r}_adapter.npz — the thing whose SIZE the course brags about).
+(checkpoints/lora_r{r}_adapter.npz - the thing whose SIZE the course brags about).
 
 Resumable: --resume --max-seconds 30 (same pattern as 02).
 Run: python3 03_train_lora.py --rank 4 [--steps 450]
@@ -48,7 +48,7 @@ SEED = 1337
 
 
 class LoRAAdapter(nn.Module):
-    """ΔW = (alpha/r) B A  attached to a frozen nn.Linear (out,in)."""
+    """delta_W = (alpha/r) B A attached to a frozen nn.Linear (out,in)."""
 
     def __init__(self, base: nn.Linear, r: int, alpha: float, seed: int):
         super().__init__()

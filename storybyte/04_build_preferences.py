@@ -3,12 +3,12 @@
 Why dialogue is the PREFERENCE target and not an SFT request field: per-request
 dialogue switching proved unlearnable at 1.09M params (the v1-v3 ablation in
 results/eval_ladder.json). A GLOBAL style preference needs no per-request
-conditioning — exactly what preference tuning is for.
+conditioning - exactly what preference tuning is for.
 
 Pipeline: for each of N training requests, sample K completions from the SFT
 model; if both a quoted and an unquoted completion appear, form (chosen=quoted,
 rejected=unquoted). Preference labels are a RULE (quote-mark presence), stated
-honestly — the course explains that real labels come from humans/rubrics.
+honestly - the course explains that real labels come from humans/rubrics.
 
 Sharded: --shard i:n  then  --assemble
 Output: data/preference_pairs.jsonl  {"request","chosen","rejected"}

@@ -12,7 +12,7 @@ Captured in `results/env_check.json` (regenerate with `python3 storybyte/00_env_
 |---|---|
 | torch | **2.12.1+cpu** |
 | tokenizers | **0.23.1** |
-| numpy | not captured in env_check.json — any modern NumPy (1.26+ / 2.x) reproduces results |
+| numpy | not captured in env_check.json - any modern NumPy (1.26+ / 2.x) reproduces results |
 | Python | 3.10+ |
 
 Base model sanity, also from `env_check.json`: **1,088,256 params** (matches config),
@@ -46,21 +46,21 @@ Full compliance on the 60-request gold set (180 generations/model). Source of tr
 | Nano KD (1500, ships) | 445,440 | 73.3% | 76.7% | 50.6% | 100% | 39.4% | 43.79 |
 
 LoRA trainable counts exclude the 512 new-embedding-row params (4 rows x 128) it also trains.
-Adapter file sizes: r1 21,094 B · r2 33,382 B · r4 57,958 B · r8 107,110 B (vs the 4,368,538 B
-full model — the r4 adapter is ~75x smaller).
+Adapter file sizes: r1 21,094 B, r2 33,382 B, r4 57,958 B, r8 107,110 B (vs the 4,368,538 B
+full model - the r4 adapter is ~75x smaller).
 
 ## Training recipes
 
-- **SFT:** AdamW β(0.9, 0.95), lr 3e-4 -> 3e-5 cosine, warmup 60, wd 0.1, clip 1.0, batch 32,
+- **SFT:** AdamW beta=(0.9, 0.95), lr 3e-4 -> 3e-5 cosine, warmup 60, wd 0.1, clip 1.0, batch 32,
   block 256, loss on story tokens only. 450 steps. Checkpoint policy = **best dev-probe
-  compliance (12 requests, not gold)** -> step 150. (Val-loss minimum was step 50 — val loss
+  compliance (12 requests, not gold)** -> step 150. (Val-loss minimum was step 50 - val loss
   picks fluency, the probe picks behavior. That gap is the lesson.)
-- **LoRA:** adapters on attention `c_attn` + `c_proj` (all 4 blocks), α = 2r, lr 1e-3 cosine,
+- **LoRA:** adapters on attention `c_attn` + `c_proj` (all 4 blocks), alpha = 2r, lr 1e-3 cosine,
   base frozen except the 4 new token-embedding rows. 450 steps.
-- **DPO:** β 0.2, lr 1e-5, batch 8 pairs, policy + reference init from SFT; 113 preference pairs
+- **DPO:** beta 0.2, lr 1e-5, batch 8 pairs, policy + reference init from SFT; 113 preference pairs
   (chosen = has dialogue), K=4 sampled at temp 0.9. Ships at 25 steps; margin 2.88,
   pair-accuracy 1.00.
-- **KD:** student 2L / 4H / d96 = 445,440 params (41% of teacher); loss = 0.5·T²·KL(T=2) + 0.5·CE
+- **KD:** student 2L / 4H / d96 = 445,440 params (41% of teacher); loss = 0.5*T^2*KL(T=2) + 0.5*CE
   on story tokens; lr 6e-4, 1500 steps.
 
 ## Browser parity

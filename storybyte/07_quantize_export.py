@@ -1,7 +1,7 @@
 """Quantize (Module 7) + export every browser artifact for the course.
 
 int8 quantization: per-tensor symmetric (scale = max|w| / 127), embeddings and
-LayerNorm params kept float32 (standard practice at this scale — stated in the
+LayerNorm params kept float32 (standard practice at this scale - stated in the
 course). Round-trip error and size measured and saved.
 
 Exports to <LDS_ROOT>/public/learn/fine-tuning-llms/:

@@ -1,6 +1,6 @@
 """Build the request->story dataset (Module 2's pipeline, for real).
 
-The control schema (decided by measurement — see results/sentiment_probe.json):
+The control schema (decided by measurement - see results/sentiment_probe.json):
   - CHARACTER: which animal the story is about (8 train animals + 2 eval-only)
   - DIALOGUE:  "with talking" vs "with no talking" (natural base rates ~56%/44%,
                so BOTH classes have abundant real data; checked via quote marks)
@@ -8,7 +8,7 @@ The control schema (decided by measurement — see results/sentiment_probe.json)
 Why not "happy vs sad endings"? We tried (results/sentiment_probe.json): the base
 model ends sad only ~4-8% of the time even when seeded sad, and marker-lexicon
 labels misfire on negations ("not sad anymore"). You cannot SFT what your data
-distribution barely contains — that failed attempt is taught honestly in Module 2.
+distribution barely contains - that failed attempt is taught honestly in Module 2.
 Length control fails the same way (natural spread is only ~82-164 words).
 
 Strategy (synthetic data, honestly labeled):
@@ -42,11 +42,11 @@ SEED = 1337
 # ---- entity-registry canon (course-wide; do not drift) ----
 TRAIN_ANIMALS = ["dog", "cat", "bird", "bunny", "bear", "fish", "duck", "frog"]
 UNSEEN_ANIMALS = ["fox", "mouse"]  # appear ONLY in the gold eval set
-# v4 task (measured — the one that works): CHARACTER + NAME control.
+# v4 task (measured - the one that works): CHARACTER + NAME control.
 # Copying a requested name into a generated story is an induction-style skill
 # transformers have natively even at 1M params; per-request STYLE switching
-# (dialogue on/off) proved unlearnable at this scale across v1-v3 — see
-# results/eval_ladder.json — and that failure is taught honestly in the course.
+# (dialogue on/off) proved unlearnable at this scale across v1-v3 - see
+# results/eval_ladder.json - and that failure is taught honestly in the course.
 # Dialogue returns in Module 5 as a GLOBAL preference target for DPO.
 TEMPLATES = [
     "Tell me a story about a {animal} named {name}.",
@@ -111,7 +111,7 @@ def count_markers(text: str, markers: list[str]) -> int:
 
 
 def label_ending(story: str) -> str:
-    """Heuristic sentiment label — kept for the Module 2 honest-lesson stats."""
+    """Heuristic sentiment label - kept for the Module 2 honest-lesson stats."""
     tail = last_sentences(story, 2)
     h = count_markers(tail, HAPPY_MARKERS)
     s = count_markers(tail, SAD_MARKERS)
@@ -196,7 +196,7 @@ def assemble() -> None:
         if words < 30:
             drop["too_short"] += 1
             continue
-        # >=1: once a story names its character, it refers to it by NAME —
+        # >=1: once a story names its character, it refers to it by NAME.
         # demanding repeated animal mentions wrongly rejects compliant stories.
         if not animal_present(s["text"], s["animal"], min_count=1):
             drop["no_animal"] += 1

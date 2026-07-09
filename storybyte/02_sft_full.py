@@ -9,9 +9,9 @@ Mechanics on display:
     Training-Run Scrubber animation.
 
 Outputs:
-  checkpoints/sft_full.npz          — best-val checkpoint (browser-export layout)
-  checkpoints/tokenizer_ext.json    — the extended tokenizer
-  results/sft_train_trace.json      — full loss curves + sample generations per eval
+  checkpoints/sft_full.npz          - best-val checkpoint (browser-export layout)
+  checkpoints/tokenizer_ext.json    - the extended tokenizer
+  results/sft_train_trace.json      - full loss curves + sample generations per eval
 Run: python3 02_sft_full.py [--steps 1200] [--quick]
 """
 from __future__ import annotations
@@ -101,7 +101,7 @@ def sample_generation(model, tk, request: str, seed: int = SEED) -> str:
 def build_dev_probe(val_examples: list[dict]) -> list[dict]:
     """12 requests for compliance-based checkpoint selection.
 
-    NOT the gold set (that would be test-set leakage — the course teaches this):
+    NOT the gold set (that would be test-set leakage - the course teaches this):
     6 seen-name requests taken from val + 6 cross-paired unseen-name requests
     that do NOT appear in gold (gold pairs UNSEEN_NAMES[i] with animal i; the
     probe shifts the pairing by 3).

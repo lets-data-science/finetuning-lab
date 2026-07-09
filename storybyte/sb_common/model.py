@@ -1,4 +1,4 @@
-"""StoryByte in PyTorch — an exact port of the shipped 1.09M-param nano-GPT.
+"""StoryByte in PyTorch - an exact port of the shipped 1.09M-param nano-GPT.
 
 Architecture (from storybyte_config.json): 4 layers, 4 heads, d_model 128,
 vocab 2048, context 256, GELU(tanh), pre-LN, learned absolute positions,
@@ -171,7 +171,7 @@ class StoryByte(nn.Module):
     def resize_vocab(self, new_size: int, init_std: float = 0.02, seed: int = 1337) -> None:
         """Grow the (tied) embedding table for new special tokens.
 
-        New rows are small random vectors — they mean nothing until fine-tuning
+        New rows are small random vectors - they mean nothing until fine-tuning
         teaches them a job. This is the standard 'add special tokens' surgery.
         """
         old = self.wte.weight.data

@@ -1,10 +1,10 @@
 # Advanced reproduction runs
 
 `make all` reproduces the shipping ladder. These are the deeper experiments behind three of the
-course's lessons — run them to regenerate the full ladder, including the entries that deliberately
+course's lessons - run them to regenerate the full ladder, including the entries that deliberately
 teach a failure mode. All CPU, all from the `storybyte/` directory. Long runs accept
 `--resume --max-seconds N` for time-boxed environments; on a laptop, just run them to completion.
-Everything lands in `results/eval_ladder.json` — that file is the single source of truth.
+Everything lands in `results/eval_ladder.json` - that file is the single source of truth.
 
 ## 1. The LoRA rank ladder (Module 4)
 
@@ -18,7 +18,7 @@ python3 08_eval_suite.py --model lora_r<r> --report
 
 Record per rank: trainable params, adapter bytes, best dev-probe compliance, and the report metrics.
 Expected shape: full compliance **50.0 -> 60.0 -> 61.1 -> 62.2%** (diminishing returns; knee at
-r ≈ 2-4), while forgetting perplexity stays near base (~2.93). LoRA learns less and forgets less.
+r ~= 2-4), while forgetting perplexity stays near base (~2.93). LoRA learns less and forgets less.
 
 ## 2. DPO: the "just right" checkpoint vs over-optimization (Module 5)
 
@@ -34,7 +34,7 @@ python3 05_dpo.py --steps 300 --beta 0.2 --lr 1e-5
 ```
 
 What to look for: dialogue climbs (59.4% -> **94.4%** at 25 steps -> 100% at 300), but by 300 steps
-format compliance **collapses** (92.8% -> 57.8%) — stories stop terminating. DPO converges fast;
+format compliance **collapses** (92.8% -> 57.8%) - stories stop terminating. DPO converges fast;
 watch the downstream evals, not the DPO loss (pair-accuracy saturates by step 25).
 
 ## 3. KD vs scratch at equal budget (Module 6)
