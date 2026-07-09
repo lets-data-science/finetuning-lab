@@ -1,0 +1,9 @@
+{
+  "n_layer": 2,
+  "n_head": 4,
+  "n_embd": 96,
+  "block_size": 256,
+  "mlp_ratio": 4,
+  "vocab_size": 2052,
+  "n_params": 445440
+}

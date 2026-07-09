@@ -1,0 +1,24 @@
+{
+  "quantization": {
+    "method": "per-tensor symmetric int8 (matmul weights); embeddings+LN float32",
+    "max_logit_diff": 0.16922,
+    "greedy_50tok_agree": true,
+    "fp32_bytes": 1788986,
+    "int8_bytes": 1127706
+  },
+  "web_dir_files": {
+    "dpo_overcooked.npz": 2191002,
+    "dpo_weights.npz": 2191002,
+    "eval_results.json": 16472,
+    "lora_adapters.npz": 220078,
+    "nano_config.json": 132,
+    "nano_int8.npz": 1127706,
+    "nano_kd.npz": 1788986,
+    "preference_pairs.json": 26801,
+    "sample_generations.json": 3737,
+    "sft_weights.npz": 4368538,
+    "tokenizer_ext.json": 124168,
+    "train_traces.json": 25648
+  },
+  "wall_seconds": 5.5
+}

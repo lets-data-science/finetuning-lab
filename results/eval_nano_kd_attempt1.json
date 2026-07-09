@@ -1,0 +1,48 @@
+{
+  "model": "nano_kd",
+  "n_gold": 60,
+  "n_samples": 180,
+  "seeds": [
+    1337,
+    1338,
+    1339
+  ],
+  "sampler": {
+    "temperature": 0.8,
+    "top_k": 40,
+    "max_new_tokens": 200
+  },
+  "dialogue_rate": 0.7556,
+  "character_compliance": 0.7278,
+  "name_compliance": 0.4444,
+  "format_compliance": 0.9722,
+  "full_compliance": 0.3667,
+  "per_name_cond": {
+    "seen_name": {
+      "ok_character": 0.7889,
+      "ok_name": 0.8889,
+      "ok_format": 0.9889,
+      "ok_full": 0.7333
+    },
+    "unseen_name": {
+      "ok_character": 0.6667,
+      "ok_name": 0.0,
+      "ok_format": 0.9556,
+      "ok_full": 0.0
+    }
+  },
+  "seen": {
+    "ok_character": 0.9097,
+    "ok_name": 0.4722,
+    "ok_format": 0.9722,
+    "ok_full": 0.4583
+  },
+  "unseen_animal": {
+    "ok_character": 0.0,
+    "ok_name": 0.3333,
+    "ok_format": 0.9722,
+    "ok_full": 0.0
+  },
+  "forgetting_perplexity": 74.664,
+  "wall_seconds": 0.2
+}

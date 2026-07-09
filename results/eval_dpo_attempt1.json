@@ -1,0 +1,48 @@
+{
+  "model": "dpo",
+  "n_gold": 60,
+  "n_samples": 180,
+  "seeds": [
+    1337,
+    1338,
+    1339
+  ],
+  "sampler": {
+    "temperature": 0.8,
+    "top_k": 40,
+    "max_new_tokens": 200
+  },
+  "dialogue_rate": 1.0,
+  "character_compliance": 0.9278,
+  "name_compliance": 0.7722,
+  "format_compliance": 0.5667,
+  "full_compliance": 0.4278,
+  "per_name_cond": {
+    "seen_name": {
+      "ok_character": 0.9333,
+      "ok_name": 1.0,
+      "ok_format": 0.5889,
+      "ok_full": 0.5444
+    },
+    "unseen_name": {
+      "ok_character": 0.9222,
+      "ok_name": 0.5444,
+      "ok_format": 0.5444,
+      "ok_full": 0.3111
+    }
+  },
+  "seen": {
+    "ok_character": 1.0,
+    "ok_name": 0.7847,
+    "ok_format": 0.5417,
+    "ok_full": 0.4444
+  },
+  "unseen_animal": {
+    "ok_character": 0.6389,
+    "ok_name": 0.7222,
+    "ok_format": 0.6667,
+    "ok_full": 0.3611
+  },
+  "forgetting_perplexity": 5.033,
+  "wall_seconds": 0.3
+}

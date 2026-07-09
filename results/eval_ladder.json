@@ -1,0 +1,766 @@
+{
+  "sft_v1_multitemplate": {
+    "model": "sft",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "character_compliance": 0.8889,
+    "dialogue_compliance": 0.5722,
+    "format_compliance": 0.9556,
+    "full_compliance": 0.4722,
+    "per_dialogue_class": {
+      "talk": {
+        "ok_character": 0.9,
+        "ok_dialogue": 0.5778,
+        "ok_format": 0.9556,
+        "ok_full": 0.4556
+      },
+      "no_talk": {
+        "ok_character": 0.8778,
+        "ok_dialogue": 0.5667,
+        "ok_format": 0.9556,
+        "ok_full": 0.4889
+      }
+    },
+    "seen": {
+      "ok_character": 0.9375,
+      "ok_dialogue": 0.5833,
+      "ok_format": 0.9583,
+      "ok_full": 0.5139
+    },
+    "unseen_animal": {
+      "ok_character": 0.6944,
+      "ok_dialogue": 0.5278,
+      "ok_format": 0.9444,
+      "ok_full": 0.3056
+    },
+    "forgetting_perplexity": 5.073,
+    "wall_seconds": 0.8
+  },
+  "sft_v2_singletemplate": {
+    "model": "sft",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "character_compliance": 0.8167,
+    "dialogue_compliance": 0.6556,
+    "format_compliance": 0.8667,
+    "full_compliance": 0.4722,
+    "per_dialogue_class": {
+      "talk": {
+        "ok_character": 0.8222,
+        "ok_dialogue": 0.6778,
+        "ok_format": 0.9111,
+        "ok_full": 0.5
+      },
+      "no_talk": {
+        "ok_character": 0.8111,
+        "ok_dialogue": 0.6333,
+        "ok_format": 0.8222,
+        "ok_full": 0.4444
+      }
+    },
+    "seen": {
+      "ok_character": 0.8542,
+      "ok_dialogue": 0.6458,
+      "ok_format": 0.8819,
+      "ok_full": 0.4931
+    },
+    "unseen_animal": {
+      "ok_character": 0.6667,
+      "ok_dialogue": 0.6944,
+      "ok_format": 0.8056,
+      "ok_full": 0.3889
+    },
+    "forgetting_perplexity": 5.036,
+    "wall_seconds": 0.4
+  },
+  "sft_v3_ctrltokens": {
+    "model": "sft",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "character_compliance": 0.6556,
+    "dialogue_compliance": 0.5278,
+    "format_compliance": 0.9389,
+    "full_compliance": 0.3056,
+    "per_dialogue_class": {
+      "talk": {
+        "ok_character": 0.6222,
+        "ok_dialogue": 0.6222,
+        "ok_format": 0.9444,
+        "ok_full": 0.3333
+      },
+      "no_talk": {
+        "ok_character": 0.6889,
+        "ok_dialogue": 0.4333,
+        "ok_format": 0.9333,
+        "ok_full": 0.2778
+      }
+    },
+    "seen": {
+      "ok_character": 0.7361,
+      "ok_dialogue": 0.5208,
+      "ok_format": 0.9306,
+      "ok_full": 0.3472
+    },
+    "unseen_animal": {
+      "ok_character": 0.3333,
+      "ok_dialogue": 0.5556,
+      "ok_format": 0.9722,
+      "ok_full": 0.1389
+    },
+    "forgetting_perplexity": 4.963,
+    "wall_seconds": 0.3
+  },
+  "base_v2gold": {
+    "model": "base",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "character_compliance": 0.5889,
+    "dialogue_compliance": 0.5,
+    "format_compliance": 0.7444,
+    "full_compliance": 0.2722,
+    "per_dialogue_class": {
+      "talk": {
+        "ok_character": 0.5333,
+        "ok_dialogue": 0.5333,
+        "ok_format": 0.7444,
+        "ok_full": 0.3444
+      },
+      "no_talk": {
+        "ok_character": 0.6444,
+        "ok_dialogue": 0.4667,
+        "ok_format": 0.7444,
+        "ok_full": 0.2
+      }
+    },
+    "seen": {
+      "ok_character": 0.6181,
+      "ok_dialogue": 0.5069,
+      "ok_format": 0.7431,
+      "ok_full": 0.2917
+    },
+    "unseen_animal": {
+      "ok_character": 0.4722,
+      "ok_dialogue": 0.4722,
+      "ok_format": 0.75,
+      "ok_full": 0.1944
+    },
+    "forgetting_perplexity": 2.837,
+    "wall_seconds": 40.9
+  },
+  "base": {
+    "model": "base",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.8056,
+    "character_compliance": 0.4,
+    "name_compliance": 0.85,
+    "format_compliance": 0.9167,
+    "full_compliance": 0.3556,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.4444,
+        "ok_name": 0.8778,
+        "ok_format": 0.9667,
+        "ok_full": 0.4222
+      },
+      "unseen_name": {
+        "ok_character": 0.3556,
+        "ok_name": 0.8222,
+        "ok_format": 0.8667,
+        "ok_full": 0.2889
+      }
+    },
+    "seen": {
+      "ok_character": 0.4167,
+      "ok_name": 0.8611,
+      "ok_format": 0.9167,
+      "ok_full": 0.375
+    },
+    "unseen_animal": {
+      "ok_character": 0.3333,
+      "ok_name": 0.8056,
+      "ok_format": 0.9167,
+      "ok_full": 0.2778
+    },
+    "forgetting_perplexity": 2.889,
+    "wall_seconds": 0.3
+  },
+  "sft": {
+    "model": "sft",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.5944,
+    "character_compliance": 0.9389,
+    "name_compliance": 0.8,
+    "format_compliance": 0.9278,
+    "full_compliance": 0.7167,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.9444,
+        "ok_name": 1.0,
+        "ok_format": 0.9667,
+        "ok_full": 0.9111
+      },
+      "unseen_name": {
+        "ok_character": 0.9333,
+        "ok_name": 0.6,
+        "ok_format": 0.8889,
+        "ok_full": 0.5222
+      }
+    },
+    "seen": {
+      "ok_character": 1.0,
+      "ok_name": 0.8194,
+      "ok_format": 0.9444,
+      "ok_full": 0.7708
+    },
+    "unseen_animal": {
+      "ok_character": 0.6944,
+      "ok_name": 0.7222,
+      "ok_format": 0.8611,
+      "ok_full": 0.5
+    },
+    "forgetting_perplexity": 3.484,
+    "wall_seconds": 0.3
+  },
+  "dpo": {
+    "model": "dpo",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.9444,
+    "character_compliance": 0.9389,
+    "name_compliance": 0.8,
+    "format_compliance": 0.8833,
+    "full_compliance": 0.6778,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.9444,
+        "ok_name": 1.0,
+        "ok_format": 0.9,
+        "ok_full": 0.8556
+      },
+      "unseen_name": {
+        "ok_character": 0.9333,
+        "ok_name": 0.6,
+        "ok_format": 0.8667,
+        "ok_full": 0.5
+      }
+    },
+    "seen": {
+      "ok_character": 1.0,
+      "ok_name": 0.8125,
+      "ok_format": 0.8958,
+      "ok_full": 0.7083
+    },
+    "unseen_animal": {
+      "ok_character": 0.6944,
+      "ok_name": 0.75,
+      "ok_format": 0.8333,
+      "ok_full": 0.5556
+    },
+    "forgetting_perplexity": 3.639,
+    "wall_seconds": 0.3
+  },
+  "nano_scratch": {
+    "model": "nano_scratch",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.7556,
+    "character_compliance": 0.65,
+    "name_compliance": 0.4889,
+    "format_compliance": 0.9778,
+    "full_compliance": 0.3667,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.7889,
+        "ok_name": 0.9333,
+        "ok_format": 0.9667,
+        "ok_full": 0.7111
+      },
+      "unseen_name": {
+        "ok_character": 0.5111,
+        "ok_name": 0.0444,
+        "ok_format": 0.9889,
+        "ok_full": 0.0222
+      }
+    },
+    "seen": {
+      "ok_character": 0.8125,
+      "ok_name": 0.5,
+      "ok_format": 0.9722,
+      "ok_full": 0.4583
+    },
+    "unseen_animal": {
+      "ok_character": 0.0,
+      "ok_name": 0.4444,
+      "ok_format": 1.0,
+      "ok_full": 0.0
+    },
+    "forgetting_perplexity": 96.473,
+    "wall_seconds": 0.2
+  },
+  "nano_kd": {
+    "model": "nano_kd",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.7333,
+    "character_compliance": 0.7667,
+    "name_compliance": 0.5056,
+    "format_compliance": 1.0,
+    "full_compliance": 0.3944,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.7778,
+        "ok_name": 1.0,
+        "ok_format": 1.0,
+        "ok_full": 0.7778
+      },
+      "unseen_name": {
+        "ok_character": 0.7556,
+        "ok_name": 0.0111,
+        "ok_format": 1.0,
+        "ok_full": 0.0111
+      }
+    },
+    "seen": {
+      "ok_character": 0.9583,
+      "ok_name": 0.5069,
+      "ok_format": 1.0,
+      "ok_full": 0.4931
+    },
+    "unseen_animal": {
+      "ok_character": 0.0,
+      "ok_name": 0.5,
+      "ok_format": 1.0,
+      "ok_full": 0.0
+    },
+    "forgetting_perplexity": 43.785,
+    "wall_seconds": 0.2
+  },
+  "lora_r1": {
+    "model": "lora_r1",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.7778,
+    "character_compliance": 0.8167,
+    "name_compliance": 0.7,
+    "format_compliance": 0.8333,
+    "full_compliance": 0.5,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.8222,
+        "ok_name": 0.8778,
+        "ok_format": 0.9333,
+        "ok_full": 0.7222
+      },
+      "unseen_name": {
+        "ok_character": 0.8111,
+        "ok_name": 0.5222,
+        "ok_format": 0.7333,
+        "ok_full": 0.2778
+      }
+    },
+    "seen": {
+      "ok_character": 0.9236,
+      "ok_name": 0.7361,
+      "ok_format": 0.8264,
+      "ok_full": 0.5556
+    },
+    "unseen_animal": {
+      "ok_character": 0.3889,
+      "ok_name": 0.5556,
+      "ok_format": 0.8611,
+      "ok_full": 0.2778
+    },
+    "forgetting_perplexity": 2.968,
+    "wall_seconds": 0.3
+  },
+  "lora_r2": {
+    "model": "lora_r2",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.7222,
+    "character_compliance": 0.8333,
+    "name_compliance": 0.7556,
+    "format_compliance": 0.9111,
+    "full_compliance": 0.6,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.8556,
+        "ok_name": 0.9556,
+        "ok_format": 1.0,
+        "ok_full": 0.8222
+      },
+      "unseen_name": {
+        "ok_character": 0.8111,
+        "ok_name": 0.5556,
+        "ok_format": 0.8222,
+        "ok_full": 0.3778
+      }
+    },
+    "seen": {
+      "ok_character": 0.9375,
+      "ok_name": 0.7361,
+      "ok_format": 0.9167,
+      "ok_full": 0.6458
+    },
+    "unseen_animal": {
+      "ok_character": 0.4167,
+      "ok_name": 0.8333,
+      "ok_format": 0.8889,
+      "ok_full": 0.4167
+    },
+    "forgetting_perplexity": 2.951,
+    "wall_seconds": 0.3
+  },
+  "lora_r4": {
+    "model": "lora_r4",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.7444,
+    "character_compliance": 0.8611,
+    "name_compliance": 0.8056,
+    "format_compliance": 0.8889,
+    "full_compliance": 0.6111,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.8667,
+        "ok_name": 0.9667,
+        "ok_format": 0.9444,
+        "ok_full": 0.7778
+      },
+      "unseen_name": {
+        "ok_character": 0.8556,
+        "ok_name": 0.6444,
+        "ok_format": 0.8333,
+        "ok_full": 0.4444
+      }
+    },
+    "seen": {
+      "ok_character": 0.9583,
+      "ok_name": 0.7986,
+      "ok_format": 0.9097,
+      "ok_full": 0.7014
+    },
+    "unseen_animal": {
+      "ok_character": 0.4722,
+      "ok_name": 0.8333,
+      "ok_format": 0.8056,
+      "ok_full": 0.25
+    },
+    "forgetting_perplexity": 2.948,
+    "wall_seconds": 0.3
+  },
+  "lora_r8": {
+    "model": "lora_r8",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.7444,
+    "character_compliance": 0.85,
+    "name_compliance": 0.8111,
+    "format_compliance": 0.8833,
+    "full_compliance": 0.6222,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.8667,
+        "ok_name": 0.9667,
+        "ok_format": 0.9444,
+        "ok_full": 0.8
+      },
+      "unseen_name": {
+        "ok_character": 0.8333,
+        "ok_name": 0.6556,
+        "ok_format": 0.8222,
+        "ok_full": 0.4444
+      }
+    },
+    "seen": {
+      "ok_character": 0.9444,
+      "ok_name": 0.8056,
+      "ok_format": 0.875,
+      "ok_full": 0.6806
+    },
+    "unseen_animal": {
+      "ok_character": 0.4722,
+      "ok_name": 0.8333,
+      "ok_format": 0.9167,
+      "ok_full": 0.3889
+    },
+    "forgetting_perplexity": 2.934,
+    "wall_seconds": 0.3
+  },
+  "dpo_overcooked": {
+    "model": "dpo",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 1.0,
+    "character_compliance": 0.9278,
+    "name_compliance": 0.7944,
+    "format_compliance": 0.5778,
+    "full_compliance": 0.45,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.9333,
+        "ok_name": 1.0,
+        "ok_format": 0.6333,
+        "ok_full": 0.5667
+      },
+      "unseen_name": {
+        "ok_character": 0.9222,
+        "ok_name": 0.5889,
+        "ok_format": 0.5222,
+        "ok_full": 0.3333
+      }
+    },
+    "seen": {
+      "ok_character": 1.0,
+      "ok_name": 0.8125,
+      "ok_format": 0.5764,
+      "ok_full": 0.4861
+    },
+    "unseen_animal": {
+      "ok_character": 0.6389,
+      "ok_name": 0.7222,
+      "ok_format": 0.5833,
+      "ok_full": 0.3056
+    },
+    "forgetting_perplexity": 4.211,
+    "wall_seconds": 0.3
+  },
+  "nano_scratch_600": {
+    "model": "nano_scratch",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.9056,
+    "character_compliance": 0.5278,
+    "name_compliance": 0.4778,
+    "format_compliance": 0.9944,
+    "full_compliance": 0.3333,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.6667,
+        "ok_name": 0.9556,
+        "ok_format": 0.9889,
+        "ok_full": 0.6667
+      },
+      "unseen_name": {
+        "ok_character": 0.3889,
+        "ok_name": 0.0,
+        "ok_format": 1.0,
+        "ok_full": 0.0
+      }
+    },
+    "seen": {
+      "ok_character": 0.6597,
+      "ok_name": 0.4931,
+      "ok_format": 1.0,
+      "ok_full": 0.4167
+    },
+    "unseen_animal": {
+      "ok_character": 0.0,
+      "ok_name": 0.4167,
+      "ok_format": 0.9722,
+      "ok_full": 0.0
+    },
+    "forgetting_perplexity": 96.88,
+    "wall_seconds": 0.2
+  },
+  "nano_kd_600": {
+    "model": "nano_kd",
+    "n_gold": 60,
+    "n_samples": 180,
+    "seeds": [
+      1337,
+      1338,
+      1339
+    ],
+    "sampler": {
+      "temperature": 0.8,
+      "top_k": 40,
+      "max_new_tokens": 200
+    },
+    "dialogue_rate": 0.7667,
+    "character_compliance": 0.7278,
+    "name_compliance": 0.4278,
+    "format_compliance": 0.9722,
+    "full_compliance": 0.3667,
+    "per_name_cond": {
+      "seen_name": {
+        "ok_character": 0.7889,
+        "ok_name": 0.8556,
+        "ok_format": 0.9556,
+        "ok_full": 0.7333
+      },
+      "unseen_name": {
+        "ok_character": 0.6667,
+        "ok_name": 0.0,
+        "ok_format": 0.9889,
+        "ok_full": 0.0
+      }
+    },
+    "seen": {
+      "ok_character": 0.9097,
+      "ok_name": 0.4792,
+      "ok_format": 0.9722,
+      "ok_full": 0.4583
+    },
+    "unseen_animal": {
+      "ok_character": 0.0,
+      "ok_name": 0.2222,
+      "ok_format": 0.9722,
+      "ok_full": 0.0
+    },
+    "forgetting_perplexity": 70.443,
+    "wall_seconds": 0.2
+  }
+}

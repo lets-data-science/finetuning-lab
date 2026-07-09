@@ -1,0 +1,11 @@
+{
+  "torch_version": "2.12.1+cpu",
+  "tokenizers_version": "0.23.1",
+  "n_params": 1088256,
+  "n_params_matches_config": true,
+  "greedy_prefix_match": true,
+  "compared_chars": 328,
+  "ms_per_token_cpu": 1.83,
+  "generated_preview": "Once upon a time, there was a little girl named Lily. She loved to play with her toys and have fun. One day, she found a",
+  "pass": true
+}

@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# OS
+.DS_Store
+
+# ---------------------------------------------------------------------------
+# Heavy / derived checkpoints — these ship via a GitHub Release, not in git.
+# Optimizer states, merged LoRA weights, and scratch temp files are all
+# regenerable from the numbered scripts. The small final artifacts the course
+# consumes (adapter .npz, nano weights, tokenizer_ext.json, configs) are kept.
+# ---------------------------------------------------------------------------
+checkpoints/*_state*.pt
+checkpoints/*_merged.npz
+checkpoints/_*_tmp.npz

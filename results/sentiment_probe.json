@@ -1,0 +1,47 @@
+{
+ "neutral": {
+  "labels": {
+   "happy": 7,
+   "sad": 3,
+   "mixed": 7,
+   "no_eos": 7
+  },
+  "sad_tail": "e key, and it worked! He was very happy. Max was not sad anymore. He thanked his mom and said sorry too.\nThe moral of the story is: Donsion things you need to bring them back home."
+ },
+ "sad_intro": {
+  "labels": {
+   "happy": 7,
+   "sad": 2,
+   "mixed": 8,
+   "no_eos": 7
+  },
+  "sad_tail": " big cat named Benny. Benny saw Anna and ran after her. Benny stopped crying and said, \"Surprise! I found you! You are so sad!\" Benny felt bad and they both went back into the sky."
+ },
+ "sad_event": {
+  "labels": {
+   "happy": 10,
+   "sad": 2,
+   "mixed": 11,
+   "no_eos": 1
+  },
+  "sad_tail": " thread, so they find onewhere.\nThe next day, the thread was so sad he did not have any friends to walk home. It was a threat to find the laundry home. The dog was never sad again."
+ },
+ "loss": {
+  "labels": {
+   "happy": 17,
+   "sad": 2,
+   "mixed": 4,
+   "no_eos": 1
+  },
+  "sad_tail": " the little dog a big hug. The little dog's friend was glad to help his friend. They played together for the rest of the day. The little dog felt better and was not so sad anymore."
+ },
+ "cry_end": {
+  "labels": {
+   "happy": 10,
+   "sad": 1,
+   "mixed": 10,
+   "no_eos": 3
+  },
+  "sad_tail": "gry. The bird lost the dog. He said, \"My dog lost my dog. He can't find its owner.\"\nThe cat had to take the dog home and left him alone. But, it was gone and the end about his day."
+ }
+}

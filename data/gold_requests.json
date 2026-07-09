@@ -1,0 +1,482 @@
+[
+  {
+    "request": "Tell me a story about a dog named Max.",
+    "animal": "dog",
+    "name": "Max",
+    "name_cond": "seen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a dog named Max.",
+    "animal": "dog",
+    "name": "Max",
+    "name_cond": "seen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a dog named Max.",
+    "animal": "dog",
+    "name": "Max",
+    "name_cond": "seen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a dog named Rex.",
+    "animal": "dog",
+    "name": "Rex",
+    "name_cond": "unseen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a dog named Rex.",
+    "animal": "dog",
+    "name": "Rex",
+    "name_cond": "unseen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a dog named Rex.",
+    "animal": "dog",
+    "name": "Rex",
+    "name_cond": "unseen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a cat named Kitty.",
+    "animal": "cat",
+    "name": "Kitty",
+    "name_cond": "seen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a cat named Kitty.",
+    "animal": "cat",
+    "name": "Kitty",
+    "name_cond": "seen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a cat named Kitty.",
+    "animal": "cat",
+    "name": "Kitty",
+    "name_cond": "seen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a cat named Bella.",
+    "animal": "cat",
+    "name": "Bella",
+    "name_cond": "unseen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a cat named Bella.",
+    "animal": "cat",
+    "name": "Bella",
+    "name_cond": "unseen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a cat named Bella.",
+    "animal": "cat",
+    "name": "Bella",
+    "name_cond": "unseen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a bird named Tom.",
+    "animal": "bird",
+    "name": "Tom",
+    "name_cond": "seen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a bird named Tom.",
+    "animal": "bird",
+    "name": "Tom",
+    "name_cond": "seen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a bird named Tom.",
+    "animal": "bird",
+    "name": "Tom",
+    "name_cond": "seen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a bird named Milo.",
+    "animal": "bird",
+    "name": "Milo",
+    "name_cond": "unseen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a bird named Milo.",
+    "animal": "bird",
+    "name": "Milo",
+    "name_cond": "unseen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a bird named Milo.",
+    "animal": "bird",
+    "name": "Milo",
+    "name_cond": "unseen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a bunny named Ben.",
+    "animal": "bunny",
+    "name": "Ben",
+    "name_cond": "seen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a bunny named Ben.",
+    "animal": "bunny",
+    "name": "Ben",
+    "name_cond": "seen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a bunny named Ben.",
+    "animal": "bunny",
+    "name": "Ben",
+    "name_cond": "seen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a bunny named Suzy.",
+    "animal": "bunny",
+    "name": "Suzy",
+    "name_cond": "unseen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a bunny named Suzy.",
+    "animal": "bunny",
+    "name": "Suzy",
+    "name_cond": "unseen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a bunny named Suzy.",
+    "animal": "bunny",
+    "name": "Suzy",
+    "name_cond": "unseen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a bear named Bob.",
+    "animal": "bear",
+    "name": "Bob",
+    "name_cond": "seen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a bear named Bob.",
+    "animal": "bear",
+    "name": "Bob",
+    "name_cond": "seen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a bear named Bob.",
+    "animal": "bear",
+    "name": "Bob",
+    "name_cond": "seen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a bear named Toby.",
+    "animal": "bear",
+    "name": "Toby",
+    "name_cond": "unseen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a bear named Toby.",
+    "animal": "bear",
+    "name": "Toby",
+    "name_cond": "unseen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a bear named Toby.",
+    "animal": "bear",
+    "name": "Toby",
+    "name_cond": "unseen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a fish named Fin.",
+    "animal": "fish",
+    "name": "Fin",
+    "name_cond": "seen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a fish named Fin.",
+    "animal": "fish",
+    "name": "Fin",
+    "name_cond": "seen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a fish named Fin.",
+    "animal": "fish",
+    "name": "Fin",
+    "name_cond": "seen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a fish named Nina.",
+    "animal": "fish",
+    "name": "Nina",
+    "name_cond": "unseen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a fish named Nina.",
+    "animal": "fish",
+    "name": "Nina",
+    "name_cond": "unseen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a fish named Nina.",
+    "animal": "fish",
+    "name": "Nina",
+    "name_cond": "unseen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a duck named Ducky.",
+    "animal": "duck",
+    "name": "Ducky",
+    "name_cond": "seen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a duck named Ducky.",
+    "animal": "duck",
+    "name": "Ducky",
+    "name_cond": "seen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a duck named Ducky.",
+    "animal": "duck",
+    "name": "Ducky",
+    "name_cond": "seen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a duck named Gus.",
+    "animal": "duck",
+    "name": "Gus",
+    "name_cond": "unseen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a duck named Gus.",
+    "animal": "duck",
+    "name": "Gus",
+    "name_cond": "unseen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a duck named Gus.",
+    "animal": "duck",
+    "name": "Gus",
+    "name_cond": "unseen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a frog named Fred.",
+    "animal": "frog",
+    "name": "Fred",
+    "name_cond": "seen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a frog named Fred.",
+    "animal": "frog",
+    "name": "Fred",
+    "name_cond": "seen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a frog named Fred.",
+    "animal": "frog",
+    "name": "Fred",
+    "name_cond": "seen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a frog named Lola.",
+    "animal": "frog",
+    "name": "Lola",
+    "name_cond": "unseen_name",
+    "template_id": 0,
+    "subset": "seen"
+  },
+  {
+    "request": "Write a story about a frog named Lola.",
+    "animal": "frog",
+    "name": "Lola",
+    "name_cond": "unseen_name",
+    "template_id": 1,
+    "subset": "seen"
+  },
+  {
+    "request": "I want a story about a frog named Lola.",
+    "animal": "frog",
+    "name": "Lola",
+    "name_cond": "unseen_name",
+    "template_id": 2,
+    "subset": "seen"
+  },
+  {
+    "request": "Tell me a story about a fox named Spot.",
+    "animal": "fox",
+    "name": "Spot",
+    "name_cond": "seen_name",
+    "template_id": 0,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "Write a story about a fox named Spot.",
+    "animal": "fox",
+    "name": "Spot",
+    "name_cond": "seen_name",
+    "template_id": 1,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "I want a story about a fox named Spot.",
+    "animal": "fox",
+    "name": "Spot",
+    "name_cond": "seen_name",
+    "template_id": 2,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "Tell me a story about a fox named Zack.",
+    "animal": "fox",
+    "name": "Zack",
+    "name_cond": "unseen_name",
+    "template_id": 0,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "Write a story about a fox named Zack.",
+    "animal": "fox",
+    "name": "Zack",
+    "name_cond": "unseen_name",
+    "template_id": 1,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "I want a story about a fox named Zack.",
+    "animal": "fox",
+    "name": "Zack",
+    "name_cond": "unseen_name",
+    "template_id": 2,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "Tell me a story about a mouse named Tim.",
+    "animal": "mouse",
+    "name": "Tim",
+    "name_cond": "seen_name",
+    "template_id": 0,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "Write a story about a mouse named Tim.",
+    "animal": "mouse",
+    "name": "Tim",
+    "name_cond": "seen_name",
+    "template_id": 1,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "I want a story about a mouse named Tim.",
+    "animal": "mouse",
+    "name": "Tim",
+    "name_cond": "seen_name",
+    "template_id": 2,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "Tell me a story about a mouse named Pia.",
+    "animal": "mouse",
+    "name": "Pia",
+    "name_cond": "unseen_name",
+    "template_id": 0,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "Write a story about a mouse named Pia.",
+    "animal": "mouse",
+    "name": "Pia",
+    "name_cond": "unseen_name",
+    "template_id": 1,
+    "subset": "unseen_animal"
+  },
+  {
+    "request": "I want a story about a mouse named Pia.",
+    "animal": "mouse",
+    "name": "Pia",
+    "name_cond": "unseen_name",
+    "template_id": 2,
+    "subset": "unseen_animal"
+  }
+]

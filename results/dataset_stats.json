@@ -1,0 +1,85 @@
+{
+  "seed": 1337,
+  "generated_stories": 1280,
+  "generation_seconds": 551.2,
+  "dropped": {
+    "no_eos": 167,
+    "too_short": 0,
+    "no_animal": 5,
+    "no_name": 465,
+    "unseen_name_leak": 9
+  },
+  "kept_after_filter": 634,
+  "after_balance": 634,
+  "train": 571,
+  "val": 63,
+  "gold_requests": 60,
+  "forgetting_holdout": 64,
+  "dialogue_base_rate": 0.711,
+  "moral_base_rate": 0.05,
+  "ending_label_dist": {
+    "happy": 526,
+    "sad": 11,
+    "mixed": 97
+  },
+  "word_count": {
+    "min": 48,
+    "p25": 109,
+    "median": 125,
+    "p75": 138,
+    "max": 170
+  },
+  "distinct_names": 77,
+  "top_names": [
+    [
+      "Bob",
+      72
+    ],
+    [
+      "Fin",
+      69
+    ],
+    [
+      "Max",
+      62
+    ],
+    [
+      "Spot",
+      54
+    ],
+    [
+      "Tom",
+      51
+    ],
+    [
+      "Ben",
+      43
+    ],
+    [
+      "Ducky",
+      41
+    ],
+    [
+      "Fred",
+      31
+    ],
+    [
+      "Tim",
+      28
+    ],
+    [
+      "Kitty",
+      24
+    ]
+  ],
+  "per_animal_counts": {
+    "dog": 129,
+    "cat": 104,
+    "bird": 43,
+    "bunny": 77,
+    "bear": 59,
+    "fish": 93,
+    "duck": 52,
+    "frog": 77
+  }
+}

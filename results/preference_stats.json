@@ -1,0 +1,10 @@
+{
+  "pairs": 113,
+  "sampler": {
+    "K": 4,
+    "temperature": 0.9,
+    "top_k": 40,
+    "seed": 2024
+  },
+  "rule": "chosen = contains a double-quote character; rejected = does not"
+}

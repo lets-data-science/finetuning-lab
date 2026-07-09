@@ -1,0 +1,9 @@
+# Pinned to the environment that produced results/env_check.json (CPU only).
+# Reproduce that record with: python3 storybyte/00_env_check.py
+torch==2.12.1
+tokenizers==0.23.1
+
+# NumPy's exact patch was not captured in env_check.json. The scripts use only
+# long-stable NumPy APIs, so any modern NumPy reproduces the results; pinned to
+# a compatible range rather than inventing a version we did not measure.
+numpy>=1.26,<3
