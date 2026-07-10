@@ -102,7 +102,7 @@ def build_dev_probe(val_examples: list[dict]) -> list[dict]:
     """12 requests for compliance-based checkpoint selection.
 
     NOT the gold set (that would be test-set leakage - the course teaches this):
-    6 seen-name requests taken from val + 6 cross-paired unseen-name requests
+    6 seen-name requests taken from val + 6 cross-paired protected-name requests
     that do NOT appear in gold (gold pairs UNSEEN_NAMES[i] with animal i; the
     probe shifts the pairing by 3).
     """
@@ -169,7 +169,17 @@ def main() -> None:
     new_ids = tk.extend_with_specials()
     model = load_base_model(base, cfg)
     old_vocab = model.cfg.vocab_size
+    base_params = sum(p.numel() for p in model.parameters())
     model.resize_vocab(tk.vocab_size)
+    added_embedding_values = (tk.vocab_size - old_vocab) * model.cfg.n_embd
+    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    expected_trainable = base_params + added_embedding_values
+    if base_params != 1_088_256 or trainable_params != expected_trainable:
+        raise RuntimeError(
+            "StoryByte parameter accounting drifted: "
+            f"base={base_params}, added_embeddings={added_embedding_values}, "
+            f"trainable={trainable_params}"
+        )
 
     train = load_jsonl(data_dir() / "requests_train.jsonl")
     val = load_jsonl(data_dir() / "requests_val.jsonl")
@@ -205,6 +215,9 @@ def main() -> None:
         "lr": args.lr, "min_lr": args.min_lr, "warmup": args.warmup,
         "weight_decay": args.weight_decay,
         "special_token_ids": new_ids, "old_vocab": old_vocab, "new_vocab": tk.vocab_size,
+        "base_params": base_params,
+        "new_embedding_values": added_embedding_values,
+        "trainable_params": trainable_params,
         "train_examples": len(packed_train), "val_examples": len(packed_val),
         "dropped_too_long": dropped,
         "checkpoint_policy": "best dev-probe compliance (12 requests, NOT gold); tie -> earlier step",

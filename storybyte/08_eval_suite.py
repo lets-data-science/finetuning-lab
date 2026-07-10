@@ -12,7 +12,7 @@ Metrics (all heuristic string/structure checks - the course labels them as such)
 Modes:
   --model base            plain-prompt baseline (request text + newline as prefix)
   --model sft             checkpoints/sft_full.npz + extended tokenizer
-  (later: --model lora_rN | dpo | nano | nano_int8)
+  --model lora_rN | dpo | dpo_overcooked | nano_scratch | nano_kd
 
 3 samples per gold request (seeds 1337/1338/1339); compliance averaged over samples.
 Results appended into results/eval_ladder.json under the model name.
@@ -60,6 +60,7 @@ def load_model(which: str, base_dir, cfg_json) -> tuple[StoryByte, SBTokenizer, 
         "sft": ckpt_dir() / "sft_full.npz",
         "sft_final": ckpt_dir() / "sft_final.npz",
         "dpo": ckpt_dir() / "dpo.npz",
+        "dpo_overcooked": ckpt_dir() / "dpo_overcooked.npz",
         "nano_kd": ckpt_dir() / "nano_kd.npz",
         "nano_scratch": ckpt_dir() / "nano_scratch.npz",
     }.get(which)
@@ -124,7 +125,13 @@ def main() -> None:
                     help="i:n - run only the i-th of n slices of gold, save partial rows")
     ap.add_argument("--report", action="store_true",
                     help="merge saved parts into the ladder entry")
+    ap.add_argument("--parts", type=int, default=None,
+                    help="exact number of saved parts to merge; required with --report")
     args = ap.parse_args()
+    if args.report and (not args.parts or args.parts < 1):
+        ap.error("--report requires --parts N")
+    if args.report and args.part:
+        ap.error("use --part i:n for generation or --report --parts n for assembly, not both")
 
     base = base_artifacts_dir()
     cfg_json = load_config(base)
@@ -142,7 +149,14 @@ def main() -> None:
     if args.report:
         model, tk, uses_format = load_model(args.model, base, cfg_json)
         rows = []
-        for p in sorted(out_dir().glob(f"eval_rows_{args.model}_part*.json")):
+        part_paths = [
+            out_dir() / f"eval_rows_{args.model}_part{i}of{args.parts}.json"
+            for i in range(1, args.parts + 1)
+        ]
+        missing = [p.name for p in part_paths if not p.exists()]
+        if missing:
+            ap.error(f"missing eval parts: {', '.join(missing)}")
+        for p in part_paths:
             rows.extend(json.load(open(p)))
         if not rows:
             raise SystemExit("no saved parts to report on")

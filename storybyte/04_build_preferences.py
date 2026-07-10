@@ -10,7 +10,7 @@ model; if both a quoted and an unquoted completion appear, form (chosen=quoted,
 rejected=unquoted). Preference labels are a RULE (quote-mark presence), stated
 honestly - the course explains that real labels come from humans/rubrics.
 
-Sharded: --shard i:n  then  --assemble
+Sharded: --shard i:n  then  --assemble --parts n
 Output: data/preference_pairs.jsonl  {"request","chosen","rejected"}
 """
 from __future__ import annotations
@@ -49,12 +49,21 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--shard", type=str, default=None, help="i:n")
     ap.add_argument("--assemble", action="store_true")
+    ap.add_argument("--parts", type=int, default=None,
+                    help="exact shard count to assemble; required with --assemble")
     args = ap.parse_args()
 
     dd = data_dir()
     if args.assemble:
+        if not args.parts or args.parts < 1:
+            ap.error("--assemble requires --parts N")
+        paths = [dd / f"pref_shard_{i}of{args.parts}.json"
+                 for i in range(1, args.parts + 1)]
+        missing = [p.name for p in paths if not p.exists()]
+        if missing:
+            ap.error(f"missing preference shards: {', '.join(missing)}")
         pairs = []
-        for p in sorted(dd.glob("pref_shard_*.json")):
+        for p in paths:
             pairs.extend(json.load(open(p)))
         with open(dd / "preference_pairs.jsonl", "w") as f:
             for pr in pairs:
@@ -69,8 +78,11 @@ def main() -> None:
         print(json.dumps(stats))
         return
 
-    assert args.shard, "pass --shard i:n or --assemble"
+    if not args.shard:
+        ap.error("pass --shard i:n or --assemble --parts N")
     i, n = (int(x) for x in args.shard.split(":"))
+    if n < 1 or i < 1 or i > n:
+        ap.error("--shard must be i:n with 1 <= i <= n")
 
     cfg_json = load_config(base_artifacts_dir())
     model, tk = load_sft(cfg_json)

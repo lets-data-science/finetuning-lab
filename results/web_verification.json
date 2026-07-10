@@ -1,11 +1,11 @@
 {
   "sft_weights.npz": {
-    "max_logit_diff": 3.298136182461331e-05,
+    "max_logit_diff": 3.254413604736328e-05,
     "greedy_agreement": true,
     "greedy_text": " Once upon a time, there was a dog named Rex. Rex was a good dog who loved to play with his friends. One day, Rex found "
   },
   "dpo_weights.npz (f16 on disk)": {
-    "max_logit_diff": 2.659511001823489e-05,
+    "max_logit_diff": 9.617209434509277e-05,
     "greedy_agreement": true,
     "greedy_text": " Once upon a time, there was a dog named Rex. Rex was a very selfish. He did not like to share his toys with his friends"
   },

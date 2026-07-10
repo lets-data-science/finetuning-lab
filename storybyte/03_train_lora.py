@@ -1,11 +1,11 @@
 """LoRA: fine-tune StoryByte on the request task with low-rank adapters (Module 4).
 
 What's frozen and what trains:
-  - ALL base weights frozen (including the new special-token embedding rows,
-    which were already trained by... nothing - so LoRA runs here start from the
-    SFT-extended tokenizer but re-initialize the special rows and train ONLY:
+  - ALL pretrained base values stay frozen. LoRA runs start from the
+    SFT-extended tokenizer, re-initialize the four special-token rows, and train:
       (a) the special-token embedding rows (they're new - someone must teach them), and
-      (b) rank-r adapters delta_W = (alpha/r) * B * A on every attention projection
+      (b) rank-r adapters. In row-vector notation the update is
+          x @ A @ B and the merged weight is W + (alpha/r) * A @ B on every attention projection
           (c_attn, c_proj) in all 4 blocks.
   This matches the honest LoRA story: base knowledge frozen, tiny task-specific
   addition trains.
@@ -48,7 +48,14 @@ SEED = 1337
 
 
 class LoRAAdapter(nn.Module):
-    """delta_W = (alpha/r) B A attached to a frozen nn.Linear (out,in)."""
+    """Low-rank update attached to a frozen ``nn.Linear``.
+
+    The course uses row-vector notation: ``x @ A_row @ B_row`` and
+    ``W_row + scale * A_row @ B_row``. PyTorch stores Linear weights as
+    ``(out, in)``, and the shipped adapter format stores those transposes as
+    ``A=(r,in)`` and ``B=(out,r)``. The forward pass below is the same algebra
+    without changing the historical checkpoint layout.
+    """
 
     def __init__(self, base: nn.Linear, r: int, alpha: float, seed: int):
         super().__init__()
@@ -64,6 +71,7 @@ class LoRAAdapter(nn.Module):
         return self.base(x) + self.scale * (x @ self.A.t() @ self.B.t())
 
     def delta(self) -> torch.Tensor:
+        # PyTorch storage orientation: (A_row @ B_row).T == B @ A.
         return self.scale * (self.B @ self.A)
 
 
@@ -102,6 +110,7 @@ def main() -> None:
     model = StoryByte(cfg)
     model.load_npz(base_dir / "storybyte_weights.npz")  # BASE weights, not SFT
     model.resize_vocab(tk.vocab_size)
+    extended_base_params = sum(p.numel() for p in model.parameters())
 
     # freeze everything...
     for p in model.parameters():
@@ -114,7 +123,9 @@ def main() -> None:
 
     adapters = attach_lora(model, args.rank, alpha)
     lora_params = [p for _, ad in adapters for p in (ad.A, ad.B)]
-    trainable = sum(p.numel() for p in lora_params) + n_new * cfg.n_embd
+    adapter_matrix_params = sum(p.numel() for p in lora_params)
+    special_token_embedding_params = n_new * cfg.n_embd
+    trainable = adapter_matrix_params + special_token_embedding_params
 
     train = [json.loads(l) for l in open(data_dir() / "requests_train.jsonl")]
     val = [json.loads(l) for l in open(data_dir() / "requests_val.jsonl")]
@@ -131,7 +142,9 @@ def main() -> None:
     trace = {
         "rank": args.rank, "alpha": alpha, "lr": args.lr, "steps": args.steps,
         "seed": SEED, "trainable_params": int(trainable),
-        "base_params": 1088256 + n_new * cfg.n_embd,
+        "adapter_matrix_params": int(adapter_matrix_params),
+        "special_token_embedding_params": int(special_token_embedding_params),
+        "base_params": int(extended_base_params),
         "train_loss": [], "val_loss": [], "probe_curve": [],
         "checkpoint_policy": "best dev-probe compliance (same probe as SFT)",
     }
@@ -207,7 +220,8 @@ def main() -> None:
     adapter_out["wte_new_rows"] = model.wte.weight.detach()[-n_new:].numpy().astype(np.float32)
     np.savez(ckpt_dir() / f"lora_r{args.rank}_adapter.npz", **adapter_out)
 
-    # merge: W' = W + delta, then swap adapters back to plain Linears and save
+    # Course row-vector notation: W_row' = W_row + scale * A_row @ B_row.
+    # nn.Linear stores W_row.T, so ad.delta() returns the stored transpose.
     for name, ad in adapters:
         with torch.no_grad():
             ad.base.weight += ad.delta()

@@ -6,11 +6,12 @@ The DPO loss (Rafailov et al. 2023), computed on story tokens only:
   loss   = -logsigmoid(margin)
 
 Policy initializes from the SFT checkpoint; the frozen reference IS the SFT
-checkpoint (the leash). Success metric (S2 gate): dialogue rate on gold
+checkpoint (the leash). Higher beta means stronger reference regularization and
+less policy deviation at the optimum. Success metric (S2 gate): dialogue rate on gold
 generations rises measurably vs SFT, without wrecking compliance or fluency.
 
 Resumable: --resume / --max-seconds (same chunked-CPU pattern as 02).
-Outputs: checkpoints/dpo.npz, results/dpo_train_trace.json
+Outputs: checkpoints/<output-name>.npz, results/<output-name>_train_trace.json
 """
 from __future__ import annotations
 
@@ -69,9 +70,13 @@ def main() -> None:
     ap.add_argument("--batch", type=int, default=8, help="pairs per step")
     ap.add_argument("--beta", type=float, default=0.2)
     ap.add_argument("--lr", type=float, default=1e-5)
+    ap.add_argument("--output-name", default="dpo",
+                    help="checkpoint/trace stem, for example dpo or dpo_overcooked")
     ap.add_argument("--resume", action="store_true")
     ap.add_argument("--max-seconds", type=float, default=30.0)
     args = ap.parse_args()
+    if not args.output_name.replace("_", "").isalnum():
+        ap.error("--output-name may contain only letters, numbers, and underscores")
 
     torch.manual_seed(SEED)
     rng = random.Random(SEED)
@@ -95,8 +100,9 @@ def main() -> None:
     opt = torch.optim.AdamW(policy.parameters(), lr=args.lr, betas=(0.9, 0.95),
                             weight_decay=0.0)
 
-    state_path = ckpt_dir() / "dpo_state.pt"
+    state_path = ckpt_dir() / f"{args.output_name}_state.pt"
     trace = {
+        "output_name": args.output_name,
         "seed": SEED, "steps": args.steps, "batch": args.batch,
         "beta": args.beta, "lr": args.lr, "n_pairs": len(tensors),
         "loss": [], "margin": [], "accuracy": [],
@@ -149,10 +155,10 @@ def main() -> None:
             return
 
     trace["wall_seconds"] = round(prior_wall + time.perf_counter() - t0, 1)
-    policy.save_npz(ckpt_dir() / "dpo.npz")
-    with open(out_dir() / "dpo_train_trace.json", "w") as f:
+    policy.save_npz(ckpt_dir() / f"{args.output_name}.npz")
+    with open(out_dir() / f"{args.output_name}_train_trace.json", "w") as f:
         json.dump(trace, f, indent=2)
-    print(json.dumps({"done": True, "steps": step,
+    print(json.dumps({"done": True, "output_name": args.output_name, "steps": step,
                       "final_margin": trace["margin"][-1],
                       "wall_seconds": trace["wall_seconds"]}))
 

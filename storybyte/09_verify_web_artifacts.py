@@ -10,7 +10,9 @@ Run: python3 09_verify_web_artifacts.py
 from __future__ import annotations
 
 import json
+import os
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -18,11 +20,22 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import numpy as np
 import torch
 
-from sb_common.paths import base_artifacts_dir, ckpt_dir, out_dir, LDS_ROOT
+from sb_common.paths import base_artifacts_dir, out_dir, LDS_ROOT, REPO_ROOT
 from sb_common.tokenizer import SBTokenizer, load_config, REQ_TOKEN, STORY_TOKEN, EOS_ID
 from sb_common.model import StoryByte, SBConfig
 
-WEB = LDS_ROOT / "public" / "learn" / "fine-tuning-llms"
+
+
+def resolve_web_dir() -> Path:
+    override = os.environ.get("FTLAB_WEB_DIR")
+    if override:
+        return Path(override).expanduser().resolve()
+    if (LDS_ROOT / "src" / "app").exists():
+        return LDS_ROOT / "public" / "learn" / "fine-tuning-llms"
+    return REPO_ROOT / "web_artifacts"
+
+
+WEB = resolve_web_dir()
 RUNNING_REQUEST = "Tell me a story about a dog named Rex."
 
 
@@ -88,9 +101,10 @@ def check(npz_name: str, tk, cfg_json) -> dict:
     cfg.vocab_size = weights["wte"].shape[0]
     m = StoryByte(cfg)
     # torch model loads the same shipped file
-    tmp = ckpt_dir() / "_verify_tmp.npz"
-    np.savez(str(tmp), **weights)
-    m.load_npz(tmp)
+    with tempfile.TemporaryDirectory(prefix="storybyte-verify-") as temp_dir:
+        tmp = Path(temp_dir) / "weights.npz"
+        np.savez(str(tmp), **weights)
+        m.load_npz(tmp)
     m.eval()
 
     ids = tk.encode(f"{REQ_TOKEN} {RUNNING_REQUEST} {STORY_TOKEN}")

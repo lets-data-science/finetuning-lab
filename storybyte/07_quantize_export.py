@@ -4,7 +4,8 @@ int8 quantization: per-tensor symmetric (scale = max|w| / 127), embeddings and
 LayerNorm params kept float32 (standard practice at this scale - stated in the
 course). Round-trip error and size measured and saved.
 
-Exports to <LDS_ROOT>/public/learn/fine-tuning-llms/:
+Exports to the website's public directory in the monorepo, or `web_artifacts/`
+when this companion is cloned alone. Set FTLAB_WEB_DIR to override either path:
   sft_weights.npz          float32 full SFT (probe-best) model
   dpo_weights.npz          float16 DPO steps-25 (Goldilocks)
   dpo_overcooked.npz       float16 DPO steps-300 (the cautionary dial position)
@@ -23,6 +24,7 @@ Run: python3 07_quantize_export.py
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -32,12 +34,23 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import numpy as np
 import torch
 
-from sb_common.paths import base_artifacts_dir, data_dir, ckpt_dir, out_dir, LDS_ROOT
+from sb_common.paths import base_artifacts_dir, data_dir, ckpt_dir, out_dir, LDS_ROOT, REPO_ROOT
 from sb_common.tokenizer import SBTokenizer, load_config, REQ_TOKEN, STORY_TOKEN, EOS_ID
 from sb_common.model import StoryByte, SBConfig
 
 RUNNING_REQUEST = "Tell me a story about a dog named Rex."  # canon
-WEB_DIR = LDS_ROOT / "public" / "learn" / "fine-tuning-llms"
+
+
+def resolve_web_dir() -> Path:
+    override = os.environ.get("FTLAB_WEB_DIR")
+    if override:
+        return Path(override).expanduser().resolve()
+    if (LDS_ROOT / "src" / "app").exists():
+        return LDS_ROOT / "public" / "learn" / "fine-tuning-llms"
+    return REPO_ROOT / "web_artifacts"
+
+
+WEB_DIR = resolve_web_dir()
 
 
 def load_model(npz_path, cfg_json, tk, nano=False):
@@ -120,6 +133,7 @@ def main():
     x = torch.tensor([ids])
     l1, _ = nano(x); l2, _ = nano_q(x)
     q_report = {
+        "scope": "offline PyTorch fp32 nano vs dequantized int8 nano on the running request",
         "method": "per-tensor symmetric int8 (matmul weights); embeddings+LN float32",
         "max_logit_diff": round(float((l1 - l2).abs().max()), 5),
         "greedy_50tok_agree": gen(nano, tk, RUNNING_REQUEST, greedy=True)[:200]

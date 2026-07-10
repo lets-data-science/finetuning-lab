@@ -60,8 +60,15 @@ SEEN_NAME = {
     "bear": "Bob", "fish": "Fin", "duck": "Ducky", "frog": "Fred",
     "fox": "Spot", "mouse": "Tim",
 }
-# names that must NOT appear in any training story (verified at assemble time)
+# Names reserved for the gold-set requested-name condition. Future dataset builds
+# reject a row when any of these names appears anywhere in its story, including as
+# a secondary character. The frozen shipped data predates this whole-row guard;
+# its documented Bella exception is intentionally preserved for reproducibility.
 UNSEEN_NAMES = ["Rex", "Bella", "Milo", "Suzy", "Toby", "Nina", "Gus", "Lola", "Zack", "Pia"]
+PROTECTED_NAME_PATTERNS = {
+    name: re.compile(rf"\b{re.escape(name)}\b", re.IGNORECASE)
+    for name in UNSEEN_NAMES
+}
 
 NAME_PATTERN = re.compile(r"named ([A-Z][a-z]+)")
 
@@ -91,6 +98,27 @@ def extract_name(story: str) -> str | None:
 
 def name_present(story: str, name: str, min_count: int = 2) -> bool:
     return len(re.findall(rf"\b{re.escape(name)}\b", story)) >= min_count
+
+
+def protected_name_counts(text: str) -> dict[str, int]:
+    """Return every protected-name occurrence, matched as a whole word."""
+    return {
+        name: len(pattern.findall(text))
+        for name, pattern in PROTECTED_NAME_PATTERNS.items()
+        if pattern.search(text)
+    }
+
+
+def assert_no_protected_names(rows: list[dict]) -> None:
+    """Fail closed if a future train/validation row contains a protected name."""
+    leaks = []
+    for i, row in enumerate(rows):
+        for field in ("request", "story", "name"):
+            hits = protected_name_counts(str(row.get(field, "")))
+            if hits:
+                leaks.append({"row": i, "field": field, "hits": hits})
+    if leaks:
+        raise AssertionError(f"protected-name leak in assembled rows: {leaks[:10]}")
 
 
 def has_dialogue(story: str) -> bool:
@@ -201,14 +229,15 @@ def assemble() -> None:
         if not animal_present(s["text"], s["animal"], min_count=1):
             drop["no_animal"] += 1
             continue
+        # Keep the historical stats key for downstream compatibility, but make
+        # its future meaning strict: any protected name anywhere in the story.
+        if protected_name_counts(s["text"]):
+            drop["unseen_name_leak"] += 1
+            continue
         name = extract_name(s["text"])
         if name is None or not name_present(s["text"], name):
             drop["no_name"] += 1
             no_name_pool.append(s["text"])
-            continue
-        if name in UNSEEN_NAMES:
-            # keep the gold set's unseen-name guarantee airtight
-            drop["unseen_name_leak"] += 1
             continue
         kept.append({
             "animal": s["animal"],
@@ -244,6 +273,8 @@ def assemble() -> None:
 
     n_val = max(16, len(examples) // 10)
     val, train = examples[:n_val], examples[n_val:]
+    assert_no_protected_names(train)
+    assert_no_protected_names(val)
     with open(dd / "requests_train.jsonl", "w") as f:
         for e in train:
             f.write(json.dumps(e) + "\n")
