@@ -1,0 +1,13 @@
+Fine-Tuning Lab
+Copyright 2026 Let's Data Science
+
+Original LDS code is licensed under the Apache License, Version 2.0.
+See LICENSE for the license text and LICENSING.md for its scope.
+
+Earlier LDS distributions were provided under the MIT License. Their
+existing grants and copyright notices are preserved in LICENSES/LDS-MIT.txt.
+
+StoryByte's GPT implementation follows the nanoGPT/minGPT lineage:
+Copyright (c) 2022 Andrej Karpathy (nanoGPT).
+Copyright (c) 2020 Andrej Karpathy (minGPT).
+Their MIT notices are preserved in LICENSES/.

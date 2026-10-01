@@ -206,4 +206,8 @@ byte-identical greedy decoding.
 - DPO: Rafailov et al., 2023, [arXiv:2305.18290](https://arxiv.org/abs/2305.18290)
 - Distilling the Knowledge in a Neural Network: Hinton, Vinyals, and Dean, 2015, [arXiv:1503.02531](https://arxiv.org/abs/1503.02531)
 
-MIT licensed. Built by [Let's Data Science](https://letsdatascience.com).
+## License
+
+Original LDS code is licensed under [Apache 2.0](LICENSE). See
+[LICENSING.md](LICENSING.md) for third-party terms, earlier licenses and the
+scope of this grant. Maintained by [Let's Data Science](https://letsdatascience.com).
